@@ -6,10 +6,10 @@ def factorielle(nbe):
 	while iteration != nbeIter:
 		nbe = nbe * iteration
 		iteration = iteration + 1
-	print(nbe)
+	return(nbe)
 
 def main():
-    factorielle(5)
+    print(factorielle(5))
 
 if __name__ == '__main__':
     main()
