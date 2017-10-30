@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import os
+
 def factorielle(nbe):
 	iteration = 1
 	nbeIter   = nbe
@@ -9,16 +11,44 @@ def factorielle(nbe):
 	return(nbe)
 
 def testFctFactorielle():
-    if(factorielle(5) == 120):
-        return(True)
+
+    bTst    = True
+    lst_val = []
+
+    lst_val = lireFicTest("testFactorielle.txt")
+
+    for val in lst_val:
+        
+        nbeResult = val.strip().split(";")
+
+        if(factorielle(int(nbeResult[0])) != int(nbeResult[1])):
+            bTst = False
+            
+    return(bTst)
+
+def lireFicTest(nomFic):
+
+    lst_File = []
+    pathFic = os.getcwd()+"\\"+nomFic
+    
+    if(os.path.isfile(pathFic) == True):
+        print("\nExistence du fichier -> "+nomFic+" : OK")
+        try:
+            File = open(pathFic,"r")
+            lst_File = File.readlines()            
+        except:
+            print("\nOuverture du fichier de test -> "+nomFic+" : NOK")
     else:
-        return(False)
+        print("\nExistence du fichier -> "+nomFic+" : NOK")
+
+    return(lst_File)
 
 def main():
+    
     if(testFctFactorielle() == True):
-        print("Test de la fonction factorielle -> OK")
+        print("\nTest de la fonction factorielle -> OK")
     else:
-        print("Test de la fonction factorielle -> NOK")
+        print("\nTest de la fonction factorielle -> NOK")
 
 if __name__ == '__main__':
     main()
